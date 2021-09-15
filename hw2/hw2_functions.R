@@ -61,3 +61,5 @@ clockwise90 <- function(a) { t(a[nrow(a):1,]) }
 plot_covariance <- function(dat, ...){
   graphics::image(clockwise90(stats::cor(dat)), asp = T, ...)
 }
+
+
