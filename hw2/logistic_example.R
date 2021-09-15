@@ -1,8 +1,8 @@
 # load in some functions that might be useful
-source("https://raw.githubusercontent.com/linnylin92/469_public/master/hw2/hw2_functions.R")
+source("https://raw.githubusercontent.com/xuranw/469_public/master/hw2/hw2_functions.R")
 
 # load in data, basic exploration
-dat <- read.csv("https://raw.githubusercontent.com/linnylin92/469_public/master/hw2/framingham.csv")
+dat <- read.csv("https://raw.githubusercontent.com/xuranw/469_public/master/hw2/framingham.csv")
 dim(dat)
 colnames(dat)
 head(dat)
@@ -30,13 +30,16 @@ summary(dat)
 ############
 
 # fitting logistic regression
+glm_res <- stats::glm(AnyCHD ~ . , data = dat, family = stats::binomial)
+## if you want to omit the intercept, we can use the following
+## glm_res <- stats::glm(AnyCHD ~ . - 1, data = dat, family = stats::binomial)
 ## the "-1" in the formula omits the intercept
-glm_res <- stats::glm(AnyCHD ~ . - 1 , data = dat, family = stats::binomial)
+
 class(dat)
 glm_res
 ## note: the following line of code will NOT work
 ## this demonstrates that the input dataset into glm MUST be a data frame
-glm_res <- stats::glm(AnyCHD ~ . - 1 , data = as.matrix(dat), family = stats::binomial)
+glm_res <- stats::glm(AnyCHD ~ ., data = as.matrix(dat), family = stats::binomial)
 ## note: the "stats::" prefix I put before "glm" is simply for explicitly. This is R-lingo
 ##   for telling R which package to specifically grab the "glm" function from. In most cases,
 ##   you can omit "stats::" (or any package name prefix), and nothing will change. However,
