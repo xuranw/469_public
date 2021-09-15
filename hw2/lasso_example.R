@@ -1,8 +1,8 @@
 # load in some functions that might be useful
-source("https://raw.githubusercontent.com/linnylin92/469_public/master/hw2/hw2_functions.R")
+source("https://raw.githubusercontent.com/xuranw/469_public/master/hw2/hw2_functions.R")
 
 # load in data
-dat_org <- read.csv("https://raw.githubusercontent.com/linnylin92/469_public/master/hw2/framingham.csv")
+dat_org <- read.csv("https://raw.githubusercontent.com/xuranw/469_public/master/hw2/framingham.csv")
 
 # you need to install the glmnet package first, via install.packages("glmnet")
 library(glmnet)
