@@ -37,16 +37,16 @@ output_predictions <- function(fit_obj, dat, response_idx){
 
 # functions for Question 2
 
-generate_data <- function(n, d, k = 3, cor_within = 0.5){
-  cor_mat <- matrix(0, d, d)
-  idx_vec <- round(seq(0, d, length.out = k+1))
+generate_data <- function(n, p, k = 3, cor_within = 0.5){
+  cor_mat <- matrix(0, p, p)
+  idx_vec <- round(seq(0, p, length.out = k+1))
   for(i in 1:k){
     cor_mat[(idx_vec[i]+1):(idx_vec[i+1]), (idx_vec[i]+1):(idx_vec[i+1])] <- cor_within
   }
   diag(cor_mat) <- 1
   
-  x <- MASS::mvrnorm(n = n, mu = rep(0, d), Sigma = cor_mat)
-  coef_truth <- rep(0,d)
+  x <- MASS::mvrnorm(n = n, mu = rep(0, p), Sigma = cor_mat)
+  coef_truth <- rep(0,p)
   coef_truth[idx_vec[-1]] <- 5
   y <- as.numeric(x %*% coef_truth + stats::rnorm(n))
   
