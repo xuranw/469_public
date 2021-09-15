@@ -7,8 +7,10 @@ output_coefficients <- function(fit_obj, dat, response_idx){
   if("glm" %in% class(fit_obj)){
     coef_vec <- coef(fit_obj)
   } else {
-    coef_vec <- as.numeric(stats::coef(fit_obj, s = "lambda.1se"))
-    names(coef_vec) <- c("(Intercept)", colnames(dat)[-response_idx])
+    coef_vec <- data.matrix(stats::coef(fit_obj, s = "lambda.1se"))
+    name.coef <- rownames(coef_vec)
+    coef_vec <- c(coef_vec)
+    names(coef_vec) <- name.coef
   }
   
   coef_vec
